@@ -1,15 +1,17 @@
 var Utils = require('./lib/utils');
 var Sensor = require('./lib/sensor');
 
-var getLatestTerritoriesList = require('./lib/latest');
+var Askro = require('./lib/listOfTerritories');
+var askro = new Askro();
 
-getLatestTerritoriesList().
-    then(function(territories) {
-        var currentDate = new Date();
-        var threeMonthAgo = new Date();
-        threeMonthAgo.setMonth(currentDate.getMonth() - 1);
-        return territories[0].fetchSeriesOfMeasurements(threeMonthAgo, currentDate);
-    }).
+var currentDate = new Date();
+var dayAgo = new Date();
+dayAgo.setDate(currentDate.getDate() - 1);
+var dayAfterDay = new Date();
+dayAfterDay.setDate(dayAfterDay.getDate() - 2);
+
+askro.
+    fetch(dayAgo, currentDate).
     then(function(data) {
         Utils.logInspect(data);
     });
