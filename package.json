@@ -1,0 +1,31 @@
+{
+  "name": "askro",
+  "version": "0.0.0",
+  "description": "Automate scraping RosAtom radiation level statistics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git:github.com:aulizko/askro-parser"
+  },
+  "keywords": [
+    "parser",
+    "webcrawler",
+    "opendata",
+    "radiation",
+    "level",
+    "askro"
+  ],
+  "author": "Alexander Ulizko <alexander@ulizko.com> (http://ulizko.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^2.3.11",
+    "chalk": "^0.5.1",
+    "lodash": "^2.4.1",
+    "request": "^2.48.0",
+    "simpleconvert-xml": "0.0.7",
+    "xmldom": "^0.1.19"
+  }
+}

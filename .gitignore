@@ -1,0 +1,17 @@
+.idea
+node_modules
+.DS_Store
+public/css/core.css
+public/css/core.css.map
+public/core.js
+config/env/env.json
+*.log
+*.pid
+*.seed
+lib-cov
+coverage
+.grunt
+upload
+public/vendor/*
+tmp
+bower_components
