@@ -1,15 +1,16 @@
 {
   "name": "askro",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Automate scraping RosAtom radiation level statistics",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test tape test/**/*.test.js | tap-min"
   },
   "repository": {
     "type": "git",
-    "url": "git:github.com:aulizko/askro-parser"
+    "url": "git://github.com/aulizko/askro.git"
   },
+  "homepage": "https://github.com/aulizko/askro",
   "keywords": [
     "parser",
     "webcrawler",
@@ -18,7 +19,11 @@
     "askro",
     "АСКРО"
   ],
-  "author": "Alexander Ulizko <alexander@ulizko.com> (http://ulizko.com/)",
+  "author": {
+    "name": "Alexander Ulizko",
+    "email": "alexander@ulizko.com",
+    "url": "http://ulizko.com"
+  },
   "license": "MIT",
   "dependencies": {
     "bluebird": "^2.3.11",
@@ -26,5 +31,10 @@
     "request": "^2.48.0",
     "simpleconvert-xml": "0.0.7",
     "xmldom": "^0.1.19"
+  },
+  "devDependencies": {
+    "nock": "^0.50.0",
+    "tap-min": "^0.1.0",
+    "tape": "^3.0.3"
   }
 }
