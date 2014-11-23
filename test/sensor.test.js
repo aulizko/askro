@@ -1,5 +1,8 @@
+'use strict';
+
 var test = require('tape').test;
 var _ = require('lodash');
+var path = require('path');
 
 var Sensor = require('../lib/sensor');
 
@@ -33,7 +36,7 @@ test('Sensor', function (t) {
             s = new Sensor(_.pick(stub, ['title', 'latitude', 'longitude', 'measurements']), false);
         } catch (e) {
             t.ok(e instanceof ValidationError);
-            t.equal(e.message, 'id attribute missing')
+            t.equal(e.message, 'id attribute missing');
         }
 
         t.notOk(s);
@@ -46,7 +49,7 @@ test('Sensor', function (t) {
             validationResult = s.validate();
         } catch (e) {
             t.ok(e instanceof ValidationError);
-            t.equal(e.message, 'id attribute has falsy value');
+            t.equal(e.message, 'id attribute has falsie value');
         }
 
         t.notOk(validationResult);
@@ -84,7 +87,7 @@ test('Sensor', function (t) {
     t.test('Fetching series of measurements', function (t) {
         nock('http://www.russianatom.ru').
             get('/data_source/get_indications_by_id.php?id=23&terr_id=1&order=24').
-            replyWithFile(200, __dirname + '/seriesOfMeasurementsResponse.stub.xml');
+            replyWithFile(200, path.join(__dirname, 'seriesOfMeasurementsResponse.stub.xml'));
 
         var s = new Sensor(stub, false);
 
@@ -107,14 +110,16 @@ test('Sensor', function (t) {
     });
 
     t.test('Different time intervals', function (t) {
+        var stubFilePath = path.join(__dirname, 'seriesOfMeasurementsResponse.stub.xml');
+
         // should throw an error if one of this paths won't be queried
         var responseStub = nock('http://www.russianatom.ru').
             get('/data_source/get_indications_by_id.php?id=23&terr_id=1&order=24').
-            replyWithFile(200, __dirname + '/seriesOfMeasurementsResponse.stub.xml').
+            replyWithFile(200, stubFilePath).
             get('/data_source/get_indications_by_id.php?id=23&terr_id=1&order=7').
-            replyWithFile(200, __dirname + '/seriesOfMeasurementsResponse.stub.xml').
+            replyWithFile(200, stubFilePath).
             get('/data_source/get_indications_by_id.php?id=23&terr_id=1&order=30').
-            replyWithFile(200, __dirname + '/seriesOfMeasurementsResponse.stub.xml');
+            replyWithFile(200, stubFilePath);
 
         var s = new Sensor(stub, false);
 
@@ -138,7 +143,7 @@ test('Sensor', function (t) {
                 }
 
                 t.end();
-            })
+            });
     });
 
     t.test('Fetch specific time frame and see if detail argument being handled correctly', function (t) {
@@ -154,13 +159,14 @@ test('Sensor', function (t) {
         moreThenThreeMonthsAgo.setMonth(moreThenThreeMonthsAgo.getMonth() - 4);
 
         // here we test automatic "detail" query change
+        var stubFilePath = path.join(__dirname, 'seriesOfMeasurementsResponse.stub.xml');
         var responseStub = nock('http://www.russianatom.ru').
             get('/data_source/get_indications_by_id.php?id=23&terr_id=1&from=1416486021829&to=1416486108229&detail=h').
-            replyWithFile(200, __dirname + '/seriesOfMeasurementsResponse.stub.xml').
+            replyWithFile(200, stubFilePath).
             get('/data_source/get_indications_by_id.php?id=23&terr_id=1&from=1416485330629&to=1416486108229&detail=d').
-            replyWithFile(200, __dirname + '/seriesOfMeasurementsResponse.stub.xml').
+            replyWithFile(200, stubFilePath).
             get('/data_source/get_indications_by_id.php?id=23&terr_id=1&from=1416475653829&to=1416486108229&detail=m').
-            replyWithFile(200, __dirname + '/seriesOfMeasurementsResponse.stub.xml');
+            replyWithFile(200, stubFilePath);
 
         var s = new Sensor(stub, false);
 

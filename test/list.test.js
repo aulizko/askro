@@ -1,6 +1,10 @@
+'use strict';
+
 var ListOfTerritories = require('../lib/listOfTerritories');
 var test = require('tape').test;
 var territoryDataStub = require('./stub').territory;
+
+var path = require('path');
 
 var Territory = require('../lib/territory');
 var _ = require('lodash');
@@ -46,7 +50,7 @@ test('List', function (t) {
     t.test('should fetch latest measurements', function (t) {
         var responseStub = nock('http://www.russianatom.ru').
             get('/data_source/last_indications.php').
-            replyWithFile(200, __dirname + '/latest.measurements.stub.xml');
+            replyWithFile(200, path.join(__dirname, '/latest.measurements.stub.xml'));
 
         var list = new ListOfTerritories();
 
@@ -63,7 +67,7 @@ test('List', function (t) {
                 }
 
                 t.end();
-            })
+            });
     });
 
     t.test('should fetch data for each sensor if asked to get series of measurements', function (t) {
@@ -76,7 +80,7 @@ test('List', function (t) {
                 return replacement;
             }).
             get('/data_source/get_indications_by_id.php?id=23&terr_id=1&order=24').
-            replyWithFile(200, __dirname + '/seriesOfMeasurementsResponse.stub.xml');
+            replyWithFile(200, path.join(__dirname, 'seriesOfMeasurementsResponse.stub.xml'));
 
         var list = new ListOfTerritories({
             territories: [territoryDataStub]

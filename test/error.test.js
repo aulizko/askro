@@ -1,3 +1,5 @@
+'use strict';
+
 var ValidationError = require('../lib/errors').ValidationError;
 var test = require('tape').test;
 

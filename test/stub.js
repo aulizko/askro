@@ -1,3 +1,5 @@
+'use strict';
+
 var sensorStub = {
     id: '23',
     title: 'п. Котельский',

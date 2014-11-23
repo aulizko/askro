@@ -33,6 +33,7 @@
     "xmldom": "^0.1.19"
   },
   "devDependencies": {
+    "eslint": "^0.9.2",
     "jscs": "^1.7.3",
     "nock": "^0.50.0",
     "tap-min": "^0.1.0",

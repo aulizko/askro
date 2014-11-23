@@ -1,5 +1,9 @@
+'use strict';
+
 var _ = require('lodash');
 var test = require('tape').test;
+
+var path = require('path');
 
 var Territory = require('../lib/territory');
 var Sensor = require('../lib/sensor');
@@ -53,7 +57,7 @@ test('Territory', function (t) {
             territory = new Territory(_.pick(stub, ['title', 'latitude', 'longitude', 'sensors']), false);
         } catch (e) {
             t.ok(e instanceof ValidationError);
-            t.equal(e.message, 'id attribute missing')
+            t.equal(e.message, 'id attribute missing');
         }
 
         t.notOk(territory);
@@ -66,7 +70,7 @@ test('Territory', function (t) {
             validationResult = territory.validate();
         } catch (e) {
             t.ok(e instanceof ValidationError);
-            t.equal(e.message, 'title attribute has falsy value');
+            t.equal(e.message, 'title attribute has falsie value');
         }
 
         t.notOk(validationResult);
@@ -78,7 +82,7 @@ test('Territory', function (t) {
             validationResult = territory.validate();
         } catch (e) {
             t.ok(e instanceof ValidationError);
-            t.equal(e.message, 'id attribute has falsy value');
+            t.equal(e.message, 'id attribute has falsie value');
         }
 
         t.notOk(validationResult);
@@ -87,11 +91,12 @@ test('Territory', function (t) {
     });
 
     t.test('Fetch series of measurements', function (t) {
+        var stubFilePath = path.join(__dirname, 'seriesOfMeasurementsResponse.stub.xml');
         var responseStub = nock('http://www.russianatom.ru').
             get('/data_source/get_indications_by_id.php?id=27&terr_id=3&order=24').
-            replyWithFile(200, __dirname + '/seriesOfMeasurementsResponse.stub.xml').
+            replyWithFile(200, stubFilePath).
             get('/data_source/get_indications_by_id.php?id=21&terr_id=3&order=24').
-            replyWithFile(200, __dirname + '/seriesOfMeasurementsResponse.stub.xml');
+            replyWithFile(200, stubFilePath);
 
         var territory = new Territory(rawStub);
 
