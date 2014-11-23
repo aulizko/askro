@@ -1,12 +1,12 @@
 var ValidationError = require('../lib/errors').ValidationError;
 var test = require('tape').test;
 
-test("Error", function (t) {
+test('Error', function (t) {
     t.test('Test message for error', function (t) {
-        var str = "Testing message";
+        var str = 'Testing message';
         var err = new ValidationError(str);
 
-        t.equal(err.name, "ValidationError");
+        t.equal(err.name, 'ValidationError');
         t.equal(err.message, str);
         t.ok(err instanceof ValidationError);
         t.ok(err instanceof Error);

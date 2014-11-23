@@ -10,8 +10,8 @@ var rawStub = require('./stub').stubRawTerritory;
 
 var nock = require('nock');
 
-test("Territory", function (t) {
-    t.test("should accept DB data", function(t) {
+test('Territory', function (t) {
+    t.test('should accept DB data', function (t) {
         var territory = new Territory(stub, false);
 
         t.equal(territory.id, 1);
@@ -20,7 +20,7 @@ test("Territory", function (t) {
         t.end();
     });
 
-    t.test("should convert sensors data from DB into Sensor class instances", function (t) {
+    t.test('should convert sensors data from DB into Sensor class instances', function (t) {
         var territory = new Territory(stub, false);
 
         t.equal(_.isArray(territory.sensors), true, 'sensors attribute should be an array');
@@ -32,7 +32,7 @@ test("Territory", function (t) {
         t.end();
     });
 
-    t.test("should accept raw data and parse it", function(t) {
+    t.test('should accept raw data and parse it', function (t) {
         var territory = new Territory(rawStub);
 
         t.equal(territory.id, 3);
@@ -45,13 +45,13 @@ test("Territory", function (t) {
         t.end();
     });
 
-    t.test('validation', function(t) {
+    t.test('validation', function (t) {
         var validationResult = false;
         var territory;
 
         try {
-            territory = new Territory(_.pick(stub, ["title", "latitude", "longitude", "sensors"]), false);
-        } catch(e) {
+            territory = new Territory(_.pick(stub, ['title', 'latitude', 'longitude', 'sensors']), false);
+        } catch (e) {
             t.ok(e instanceof ValidationError);
             t.equal(e.message, 'id attribute missing')
         }
@@ -76,7 +76,7 @@ test("Territory", function (t) {
 
         try {
             validationResult = territory.validate();
-        } catch(e) {
+        } catch (e) {
             t.ok(e instanceof ValidationError);
             t.equal(e.message, 'id attribute has falsy value');
         }
@@ -86,7 +86,7 @@ test("Territory", function (t) {
         t.end();
     });
 
-    t.test("Fetch series of measurements", function(t) {
+    t.test('Fetch series of measurements', function (t) {
         var responseStub = nock('http://www.russianatom.ru').
             get('/data_source/get_indications_by_id.php?id=27&terr_id=3&order=24').
             replyWithFile(200, __dirname + '/seriesOfMeasurementsResponse.stub.xml').
@@ -106,4 +106,3 @@ test("Territory", function (t) {
 
     t.end();
 });
-

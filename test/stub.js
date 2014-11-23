@@ -4,12 +4,13 @@ var sensorStub = {
     longitude: 28.747183,
     latitude: 59.584364,
     measurements: [
-        {time: new Date("Fri Nov 21 2014 03:00:00 GMT+0400 (MSK)"), value: 0.1},
-        {time: new Date("Fri Nov 21 2014 04:00:00 GMT+0400 (MSK)"), value: 0.1}
+        {time: new Date('Fri Nov 21 2014 03:00:00 GMT+0400 (MSK)'), value: 0.1},
+        {time: new Date('Fri Nov 21 2014 04:00:00 GMT+0400 (MSK)'), value: 0.1}
     ]
 };
 
-var sensorRawDataStub = { time: '1416652260',
+var sensorRawDataStub = {
+    time: '1416652260',
     value: '12.25',
     name: 'г. Билибино (м/р «Арктика»)',
     icon: 'green',
@@ -35,7 +36,7 @@ exports.territory = {
             longitude: 28.402556,
             latitude: 59.99593,
             measurements: [
-                {time: new Date("Fri Nov 21 2014 03:00:00 GMT+0400 (MSK)"), value: 0.095}
+                {time: new Date('Fri Nov 21 2014 03:00:00 GMT+0400 (MSK)'), value: 0.095}
             ]
         },
         sensorStub

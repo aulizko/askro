@@ -3,16 +3,15 @@ var _ = require('lodash');
 
 var Sensor = require('../lib/sensor');
 
-
 var stub = require('./stub').sensor;
 var rawStub = require('./stub').sensorRawData;
 var ValidationError = require('../lib/errors').ValidationError;
 
 var nock = require('nock');
 
-test("Sensor", function (t) {
+test('Sensor', function (t) {
     // Load data from DB testing
-    t.test("should accept data from db", function (t) {
+    t.test('should accept data from db', function (t) {
         var s = new Sensor(stub, false);
 
         t.equal(s.id, '23');
@@ -26,12 +25,12 @@ test("Sensor", function (t) {
     });
 
     // Validation
-    t.test("should require safe attributes", function (t) {
+    t.test('should require safe attributes', function (t) {
         var validationResult = false;
         var s;
 
         try {
-            s = new Sensor(_.pick(stub, ["title, latitude, longitude, measurements"]), false);
+            s = new Sensor(_.pick(stub, ['title', 'latitude', 'longitude', 'measurements']), false);
         } catch (e) {
             t.ok(e instanceof ValidationError);
             t.equal(e.message, 'id attribute missing')
@@ -57,7 +56,7 @@ test("Sensor", function (t) {
 
         try {
             validationResult = s.validate();
-        } catch(e) {
+        } catch (e) {
             t.ok(e instanceof ValidationError);
             t.equal(e.message, 'Some measurements are malformed');
         }
@@ -68,7 +67,7 @@ test("Sensor", function (t) {
     });
 
     // Parse raw data from server
-    t.test("Raw data parsing", function (t) {
+    t.test('Raw data parsing', function (t) {
         var s = new Sensor(rawStub);
 
         t.equal(s.id, '27');
@@ -82,11 +81,10 @@ test("Sensor", function (t) {
     });
 
     // test network methods
-    t.test("Fetching series of measurements", function (t) {
+    t.test('Fetching series of measurements', function (t) {
         nock('http://www.russianatom.ru').
             get('/data_source/get_indications_by_id.php?id=23&terr_id=1&order=24').
             replyWithFile(200, __dirname + '/seriesOfMeasurementsResponse.stub.xml');
-
 
         var s = new Sensor(stub, false);
 
@@ -108,7 +106,7 @@ test("Sensor", function (t) {
             });
     });
 
-    t.test("Different time intervals", function (t) {
+    t.test('Different time intervals', function (t) {
         // should throw an error if one of this paths won't be queried
         var responseStub = nock('http://www.russianatom.ru').
             get('/data_source/get_indications_by_id.php?id=23&terr_id=1&order=24').
@@ -188,7 +186,6 @@ test("Sensor", function (t) {
                 t.end();
             });
     });
-
 
     t.end();
 });
