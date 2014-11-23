@@ -1,5 +1,4 @@
 {
     "preset": "yandex",
-    "excludeFiles": ["./lib/config.js"],
     "validateJSDoc": {}
 }
