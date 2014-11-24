@@ -1,3 +1,5 @@
+'use strict';
+
 var List = require('./lib/listOfTerritories');
 var Territory = require('./lib/territory');
 var Sensor = require('./lib/sensor');
