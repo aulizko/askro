@@ -33,14 +33,14 @@ I've tried to store and analize it in noSQL storage and it was smooth.
 First, you should initialize parser:
 
 ```javascript
-var ASKRO = require('Askro');
+var ASKRO = require('askro');
 var parser = new ASKRO();
 ```
 
 Also, you may pass data from previous crawling session into parser (to avoid data duplication):
 
 ```javascript
-var ASKRO = require('Askro');
+var ASKRO = require('askro');
 var parser = new ASKRO({
     territories: ArrayOfTerritoriesFromDB
 });
@@ -61,19 +61,19 @@ BTW, all async methods implements [Promise/A+](promise-a-plus-link) standard.
 To get data for last 24 hours (one measurement per hour):
 
 ```javascript
-parser.fetch(); // actually, parser.fetch(Askro.WEEK) also will work
+parser.fetch(); // actually, parser.fetch(ASKRO.WEEK) also will work
 ```
 
 Last week:
 
 ```javascript
-parser.fetch(Askro.WEEK);
+parser.fetch(ASKRO.WEEK);
 ```
 
 Last month:
 
 ```javascript
-parser.fetch(Askro.MONTH); // actually, parser.fetch(parser.DAY) also will work
+parser.fetch(ASKRO.MONTH); // actually, parser.fetch(parser.DAY) also will work
 ```
 
 To get data in an arbitrary time interval:
@@ -100,8 +100,8 @@ When you get access to specific territory object, you may ask it and only it to 
 var territory = parser.territories[0];
 
 territory.fetchSeriesOfMeasurements(); // data for all sensors for last 24 hours
-territory.fetchSeriesOfMeasurements(Askro.WEEK) // same as above, but for last week (one measurement per day)
-territory.fetchSeriesOfMeasurements(Askro.MONTH) // same as above, but for last month (one measurement per day)
+territory.fetchSeriesOfMeasurements(ASKRO.WEEK) // same as above, but for last week (one measurement per day)
+territory.fetchSeriesOfMeasurements(ASKRO.MONTH) // same as above, but for last month (one measurement per day)
 territory.fetchSeriesOfMeasurements(startDate, endDate) // same as above, but for arbitrary time interval
 ```
 
@@ -140,7 +140,7 @@ Say, you want to copy data from provider to your own storage:
 
 ```javascript
 var _ = require('lodash');
-var ASKRO = require('Askro');
+var ASKRO = require('askro');
 var parser = new ASKRO();
 
 parser
