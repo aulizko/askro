@@ -117,13 +117,27 @@ territory.removeSensor(sensorId); // remove specific sensor if you're not intere
 territory.getSensor(sensorId); // get specific Sensor
 ```
 
+Each sensor knows how to get his data:
+
+```javascript
+var sensor = parser.territories[0].sensors[0];
+
+sensor
+    .fetchSeriesOfMeasurements()
+    .then(function (sensor) {
+        console.log(sensor.measurements);
+    });
+
+// to load data for last week, month and so on, see above - it's all the same
+```
+
 Each sensor has measurements array which contain series of measurements belonging to it.
 
 ```javascript
 sensor.measurements; // array of {time: Date, value: float} objects
 ```
 
-**Warning**: Sensor will drop duplicate measurements.
+**Warning**: Sensor will drop duplicate measurements if any.
 
 ### Cleanup
 
