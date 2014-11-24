@@ -55,6 +55,7 @@ test('Sensor', function (t) {
         t.notOk(validationResult);
 
         s.id = 1;
+        // noinspection JSCheckFunctionSignatures
         s.measurements.push({wrong: true});
 
         try {
@@ -191,6 +192,39 @@ test('Sensor', function (t) {
 
                 t.end();
             });
+    });
+
+    t.test('toJSON', function (t) {
+        var sensor = new Sensor(stub, false);
+
+        t.deepEqual(sensor.toJSON(), {
+            id: '23',
+            latitude: 59.584364,
+            longitude: 28.747183,
+            measurements: [
+                {
+                    time: new Date('Fri Nov 21 2014 03:00:00 GMT+0400 (MSK)'),
+                    value: 0.1
+                },
+                {
+                    time: new Date('Fri Nov 21 2014 04:00:00 GMT+0400 (MSK)'),
+                    value: 0.1
+                }
+            ],
+            title: 'п. Котельский'
+        });
+
+        t.end();
+    });
+
+    t.test('toString', function (t) {
+        var sensor = new Sensor(stub, false);
+
+        t.equal(sensor.toString(), '{"id":"23","title":"п. Котельский","longitude":28.747183,"latitude":59.584364,' +
+        '"measurements":[{"time":"2014-11-20T23:00:00.000Z","value":0.1},' +
+        '{"time":"2014-11-21T00:00:00.000Z","value":0.1}]}');
+
+        t.end();
     });
 
     t.end();

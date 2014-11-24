@@ -109,5 +109,110 @@ test('Territory', function (t) {
             });
     });
 
+    t.test('toJSON method', function (t) {
+        var territory = new Territory(stub, false);
+        t.deepEqual(territory.toJSON(), {
+            id: 1,
+            latitude: 59.852586487905,
+            longitude: 29.0841979980469,
+            sensors: [
+                {
+                    id: '28',
+                    latitude: 59.99593,
+                    longitude: 28.402556,
+                    measurements: [
+                        {
+                            time: new Date('Fri Nov 21 2014 03:00:00 GMT+0400 (MSK)'),
+                            value: 0.095
+                        }
+                    ],
+                    title: 'остров Сескар'
+                },
+                {
+                    id: '23',
+                    latitude: 59.584364,
+                    longitude: 28.747183,
+                    measurements: [
+                        {
+                            time: new Date('Fri Nov 21 2014 03:00:00 GMT+0400 (MSK)'),
+                            value: 0.1
+                        },
+                        {
+                            time: new Date('Fri Nov 21 2014 04:00:00 GMT+0400 (MSK)'),
+                            value: 0.1
+                        }
+                    ],
+                    title: 'п. Котельский'
+                }
+            ],
+            title: 'Ленинградская АЭС'
+        });
+
+        t.end();
+    });
+
+    t.test('toString', function (t) {
+        var territory = new Territory(stub, false);
+        t.equal(territory.toString(), '{"id":1,"latitude":59.852586487905,"longitude":29.0841979980469,' +
+        '"title":"Ленинградская АЭС","sensors":[{"id":"28","title":"остров Сескар","longitude":28.402556,' +
+        '"latitude":59.99593,"measurements":[{"time":"2014-11-20T23:00:00.000Z","value":0.095}]},{"id":"23",' +
+        '"title":"п. Котельский","longitude":28.747183,"latitude":59.584364,"measurements":[{' +
+        '"time":"2014-11-20T23:00:00.000Z","value":0.1},{"time":"2014-11-21T00:00:00.000Z","value":0.1}]}]}');
+
+        t.end();
+    });
+
+    t.test('getSensor', function (t) {
+        var territory = new Territory(stub, false);
+
+        t.notOk(territory.getSensor('132'));
+
+        t.equal(territory.getSensor('28').latitude, 59.99593);
+
+        t.end();
+    });
+
+    t.test('removeSensor', function (t) {
+        var territory = new Territory(stub, false);
+
+        var beforeDeletionSensorsCount = territory.sensors.length;
+
+        // if there is not such a sensor
+        var deletionResult = territory.removeSensor('3112');
+
+        t.notOk(deletionResult);
+        t.equal(territory.sensors.length, beforeDeletionSensorsCount);
+
+        // should work as predicted
+        deletionResult = territory.removeSensor('23');
+        t.ok(deletionResult);
+        t.equal(territory.sensors.length, beforeDeletionSensorsCount - 1);
+        t.equal(territory.sensors[0].id, '28');
+
+        t.end();
+    });
+
+    t.test('addSensor', function (t) {
+        var territory = new Territory(stub, false);
+
+        var sensor = territory.sensors[0];
+        territory.sensors.length = 0;
+
+        // add new sensor
+        territory.addSensor(sensor);
+        t.equal(territory.sensors.length, 1);
+        t.equal(territory.sensors[0].id, sensor.id);
+
+        // add new sensor with the same id and look into sensors count
+        territory.addSensor(sensor);
+        t.equal(territory.sensors.length, 1);
+        t.equal(territory.sensors[0].id, sensor.id);
+
+        // this method adds a link to territory to the sensor
+        t.equal(territory.sensors[0].territory, territory);
+
+        t.end();
+    });
+
     t.end();
 });

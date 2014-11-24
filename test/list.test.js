@@ -103,5 +103,115 @@ test('List', function (t) {
             });
     });
 
+    t.test('add', function (t) {
+        var list = new ListOfTerritories();
+
+        list.add(new Territory(territoryDataStub, false));
+
+        t.equal(list.territories.length, 1);
+        t.equal(list.territories[0].id, 1);
+
+        // should not allow duplication of data
+        list.add(new Territory(territoryDataStub, false));
+
+        t.equal(list.territories.length, 1);
+        t.equal(list.territories[0].id, 1);
+
+        t.end();
+    });
+
+    t.test('remove', function (t) {
+        var list = new ListOfTerritories({
+            territories: [territoryDataStub]
+        });
+
+        var oldListLength = list.territories.length;
+
+        // remove with wrong id
+        var deletionResult = list.remove(2);
+        t.notOk(deletionResult);
+        t.equal(list.territories.length, oldListLength);
+
+        deletionResult = list.remove(1);
+        t.ok(deletionResult);
+        t.equal(list.territories.length, 0);
+
+        t.end();
+    });
+
+    t.test('get', function (t) {
+        var list = new ListOfTerritories({
+            territories: [territoryDataStub]
+        });
+
+        t.notOk(list.get('123'), 'should return undefined if there is not territory with provided id');
+
+        t.equal(list.get('1').title, 'Ленинградская АЭС');
+
+        t.end();
+    });
+
+    t.test('toJSON', function (t) {
+        var list = new ListOfTerritories({
+            territories: [territoryDataStub]
+        });
+
+        t.deepEqual(list.toJSON(), [
+            {
+                id: 1,
+                latitude: 59.852586487905,
+                longitude: 29.0841979980469,
+                title: 'Ленинградская АЭС',
+                sensors: [
+                    {
+                        id: '28',
+                        title: 'остров Сескар',
+                        longitude: 28.402556,
+                        latitude: 59.99593,
+                        measurements: [
+                            {
+                                time: new Date('Fri Nov 21 2014 03:00:00 GMT+0400 (MSK)'),
+                                value: 0.095
+                            }
+                        ]
+                    },
+                    {
+                        id: '23',
+                        title: 'п. Котельский',
+                        longitude: 28.747183,
+                        latitude: 59.584364,
+                        measurements: [
+                            {
+                                time: new Date('Fri Nov 21 2014 03:00:00 GMT+0400 (MSK)'),
+                                value: 0.1
+                            },
+                            {
+                                time: new Date('Fri Nov 21 2014 04:00:00 GMT+0400 (MSK)'),
+                                value: 0.1
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]);
+
+        t.end();
+    });
+
+    t.test('toString', function (t) {
+        var list = new ListOfTerritories({
+            territories: [territoryDataStub]
+        });
+
+        t.equal(list.toString(), '[{"id":1,"latitude":59.852586487905,"longitude":29.0841979980469,' +
+        '"title":"Ленинградская АЭС","sensors":[{"id":"28","title":"остров Сескар","longitude":28.402556,' +
+        '"latitude":59.99593,"measurements":[{"time":"2014-11-20T23:00:00.000Z","value":0.095}]},' +
+        '{"id":"23","title":"п. Котельский","longitude":28.747183,"latitude":59.584364,' +
+        '"measurements":[{"time":"2014-11-20T23:00:00.000Z","value":0.1},' +
+        '{"time":"2014-11-21T00:00:00.000Z","value":0.1}]}]}]');
+
+        t.end();
+    });
+
     t.end();
 });
