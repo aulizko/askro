@@ -196,6 +196,7 @@ Just run ```npm test```.
 
 MIT, see [LICENSE](license-url) for details.
 
+[license-url]: LICENSE
 [sarms-description-link]: http://en.www.skc.ru/control/askro
 [rosatom-safety-report-link]: http://ar2013.rosatom.ru/267
 [promise-a-plus-link]: https://promisesaplus.com
