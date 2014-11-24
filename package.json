@@ -8,15 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/aulizko/askro.git"
+    "url": "git@github.com:aulizko/askro.git"
   },
   "homepage": "https://github.com/aulizko/askro",
+  "bugs": {
+    "url": "https://github.com/aulizko/askro/issues"
+  },
   "keywords": [
     "parser",
     "webcrawler",
     "opendata",
     "radiation level",
     "askro",
+    "SARMS",
     "АСКРО"
   ],
   "author": {
