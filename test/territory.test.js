@@ -214,5 +214,17 @@ test('Territory', function (t) {
         t.end();
     });
 
+    t.test('cleanMeasurements', function (t) {
+        var territory = new Territory(stub, false);
+
+        territory.cleanMeasurements();
+
+        t.ok(_.every(territory.sensors, function iterateThroughSensors(sensor) {
+            return sensor.measurements.length === 0;
+        }));
+
+        t.end();
+    });
+
     t.end();
 });

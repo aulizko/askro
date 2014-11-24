@@ -227,5 +227,13 @@ test('Sensor', function (t) {
         t.end();
     });
 
+    t.test('cleanMeasurements', function (t) {
+        var s = new Sensor(stub, false);
+        s.cleanMeasurements();
+        t.equal(s.measurements.length, 0);
+
+        t.end();
+    });
+
     t.end();
 });

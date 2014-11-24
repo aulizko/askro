@@ -213,5 +213,21 @@ test('List', function (t) {
         t.end();
     });
 
+    t.test('cleanMeasurements', function (t) {
+        var list = new ListOfTerritories({
+            territories: [territoryDataStub]
+        });
+
+        list.cleanMeasurements();
+
+        _.every(list.territories, function iterateThroughTerritories(territory) {
+            return _.every(territory.sensors, function iterateThroughSensors(sensor) {
+                return sensor.measurements.length === 0;
+            });
+        });
+
+        t.end();
+    });
+
     t.end();
 });
