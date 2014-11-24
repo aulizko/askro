@@ -1,4 +1,4 @@
-![License][license-image]][license-url]
+[![License][license-image]][license-url]
 ![build status][travis-image]
 
 # Askro
