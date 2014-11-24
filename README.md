@@ -70,13 +70,13 @@ parser.fetch(); // actually, parser.fetch(ASKRO.WEEK) also will work
 Last week:
 
 ```javascript
-parser.fetch(ASKRO.WEEK);
+parser.fetch(ASKRO.WEEK); // note: one measurement per day
 ```
 
 Last month:
 
 ```javascript
-parser.fetch(ASKRO.MONTH); // actually, parser.fetch(parser.DAY) also will work
+parser.fetch(ASKRO.MONTH); // note: one measurement per day
 ```
 
 To get data in an arbitrary time interval:
