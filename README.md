@@ -59,7 +59,7 @@ parser
     });
 ```
 
-BTW, all async methods implements [Promise/A+](promise-a-plus-link) standard.
+BTW, all async methods implements [Promise/A+][promise-a-plus-link] standard.
 
 To get data for last 24 hours (one measurement per hour):
 
