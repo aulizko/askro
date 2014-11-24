@@ -1,8 +1,11 @@
+[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+![build status][travis-image]
+
 # Askro
 
 This tool allow you to parse, collect and traverse through the radiation monitoring data provided by ROSATOM SARMS(Sectoral Automated Radiation Monitoring System).
 
-[More](sarms-description-link) [reading](rosatom-safety-report-link) about SARMS.
+[More][sarms-description-link] [reading][rosatom-safety-report-link] about SARMS.
 
 ## Installation
 
@@ -194,8 +197,9 @@ Just run ```npm test```.
 
 ## License
 
-MIT, see [LICENSE](license-url) for details.
+MIT, see [LICENSE][license-url] for details.
 
+[travis-image]: https://travis-ci.org/aulizko/askro.svg?branch=master
 [license-url]: LICENSE
 [sarms-description-link]: http://en.www.skc.ru/control/askro
 [rosatom-safety-report-link]: http://ar2013.rosatom.ru/267
