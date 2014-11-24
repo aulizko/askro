@@ -1,6 +1,6 @@
 {
   "name": "askro",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Automate scraping RosAtom radiation level statistics",
   "main": "index.js",
   "scripts": {
