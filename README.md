@@ -1,4 +1,4 @@
-[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+![License][license-image]][license-url]
 ![build status][travis-image]
 
 # Askro
@@ -200,6 +200,7 @@ Just run ```npm test```.
 MIT, see [LICENSE][license-url] for details.
 
 [travis-image]: https://travis-ci.org/aulizko/askro.svg?branch=master
+[license-image]: http://img.shields.io/npm/l/askro.svg
 [license-url]: LICENSE
 [sarms-description-link]: http://en.www.skc.ru/control/askro
 [rosatom-safety-report-link]: http://ar2013.rosatom.ru/267
