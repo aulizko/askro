@@ -1,6 +1,7 @@
 [![License][license-image]][license-url]
 [![Build Status][travis-image]][travis-url]
 [![Code Climate][codeclimate-image]][codeclimate-url]
+[![Test Coverage][codeclimate-coverage-image]][codeclimate-coverage-url]
 
 # Askro
 
@@ -214,6 +215,8 @@ Just run ```npm test```.
 
 MIT, see [LICENSE][license-url] for details.
 
+[codeclimate-coverage-url]: https://codeclimate.com/github/aulizko/askro
+[codeclimate-coverage-image]: https://codeclimate.com/github/aulizko/askro/badges/coverage.svg
 [codeclimate-url]: https://codeclimate.com/github/aulizko/askro
 [codeclimate-image]: https://codeclimate.com/github/aulizko/askro/badges/gpa.svg
 [travis-url]: https://travis-ci.org/aulizko/askro
