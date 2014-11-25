@@ -1,7 +1,7 @@
 {
   "name": "askro",
   "version": "0.1.2",
-  "description": "Automate scraping RosAtom radiation level statistics",
+  "description": "This tool allow you to parse, collect and traverse through the radiation monitoring data provided by ROSATOM SARMS(Sectoral Automated Radiation Monitoring System).",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test tape test/**/*.test.js | tap-min"
