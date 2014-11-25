@@ -1,5 +1,5 @@
 [![License][license-image]][license-url]
-![build status][travis-image]
+[![Build Status][travis-image]][travis-url]
 
 # Askro
 
@@ -213,6 +213,7 @@ Just run ```npm test```.
 
 MIT, see [LICENSE][license-url] for details.
 
+[travis-url]: https://travis-ci.org/aulizko/askro
 [travis-image]: https://travis-ci.org/aulizko/askro.svg?branch=master
 [license-image]: http://img.shields.io/npm/l/askro.svg
 [license-url]: LICENSE
