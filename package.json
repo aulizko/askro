@@ -1,6 +1,6 @@
 {
   "name": "askro",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "This tool allow you to parse, collect and traverse through the radiation monitoring data provided by ROSATOM SARMS(Sectoral Automated Radiation Monitoring System).",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "url": "https://github.com/aulizko/askro/issues"
   },
   "engines": {
-      "node": ">=0.11.0"
+    "node": ">=0.11.0"
   },
   "keywords": [
     "parser",
