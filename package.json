@@ -15,6 +15,9 @@
   "bugs": {
     "url": "https://github.com/aulizko/askro/issues"
   },
+  "engines": {
+      "node": ">=0.11.0"
+  },
   "keywords": [
     "parser",
     "webcrawler",
