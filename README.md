@@ -1,5 +1,6 @@
 [![License][license-image]][license-url]
 [![Build Status][travis-image]][travis-url]
+[![Code Climate][codeclimate-image]][codeclimate-url]
 
 # Askro
 
@@ -213,6 +214,8 @@ Just run ```npm test```.
 
 MIT, see [LICENSE][license-url] for details.
 
+[codeclimate-url]: https://codeclimate.com/github/aulizko/askro
+[codeclimate-image]: https://codeclimate.com/github/aulizko/askro/badges/gpa.svg
 [travis-url]: https://travis-ci.org/aulizko/askro
 [travis-image]: https://travis-ci.org/aulizko/askro.svg?branch=master
 [license-image]: http://img.shields.io/npm/l/askro.svg
