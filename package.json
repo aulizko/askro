@@ -4,7 +4,8 @@
   "description": "This tool allow you to parse, collect and traverse through the radiation monitoring data provided by ROSATOM SARMS(Sectoral Automated Radiation Monitoring System).",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test tape test/**/*.test.js | tap-min"
+    "test": "NODE_ENV=test node node_modules/argg test/*.test.js",
+    "cover": "NODE_ENV=test istanbul cover --dir reports/coverage node_modules/argg test/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "xmldom": "^0.1.19"
   },
   "devDependencies": {
+    "argg": "0.0.1",
     "eslint": "^0.9.2",
     "jscs": "^1.7.3",
     "nock": "^0.50.0",
