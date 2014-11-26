@@ -162,29 +162,29 @@ test('Territory', function (t) {
         t.end();
     });
 
-    t.test('getSensor', function (t) {
+    t.test('get', function (t) {
         var territory = new Territory(stub, false);
 
-        t.notOk(territory.getSensor('132'));
+        t.notOk(territory.get('132'));
 
-        t.equal(territory.getSensor('28').latitude, 59.99593);
+        t.equal(territory.get('28').latitude, 59.99593);
 
         t.end();
     });
 
-    t.test('removeSensor', function (t) {
+    t.test('remove', function (t) {
         var territory = new Territory(stub, false);
 
         var beforeDeletionSensorsCount = territory.sensors.length;
 
         // if there is not such a sensor
-        var deletionResult = territory.removeSensor('3112');
+        var deletionResult = territory.remove('3112');
 
         t.notOk(deletionResult);
         t.equal(territory.sensors.length, beforeDeletionSensorsCount);
 
         // should work as predicted
-        deletionResult = territory.removeSensor('23');
+        deletionResult = territory.remove('23');
         t.ok(deletionResult);
         t.equal(territory.sensors.length, beforeDeletionSensorsCount - 1);
         t.equal(territory.sensors[0].id, '28');
@@ -192,19 +192,19 @@ test('Territory', function (t) {
         t.end();
     });
 
-    t.test('addSensor', function (t) {
+    t.test('add', function (t) {
         var territory = new Territory(stub, false);
 
         var sensor = territory.sensors[0];
         territory.sensors.length = 0;
 
         // add new sensor
-        territory.addSensor(sensor);
+        territory.add(sensor);
         t.equal(territory.sensors.length, 1);
         t.equal(territory.sensors[0].id, sensor.id);
 
         // add new sensor with the same id and look into sensors count
-        territory.addSensor(sensor);
+        territory.add(sensor);
         t.equal(territory.sensors.length, 1);
         t.equal(territory.sensors[0].id, sensor.id);
 

@@ -5,3 +5,4 @@ test
 .jscsrc
 .npmignore
 .travis.yml
+reports
